@@ -1,11 +1,16 @@
 var http = require('http');
+var url = require('url');
 
-http.createServer(function (req, res) {
+var adr = 'http://localhost:8080/default.htm?year=2017&month=february';
+var q = url.parse(adr, true);
 
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    
-    res.end('Hello World\n')
+console.log(q.host);
+console.log(q.pathname);
+console.log(q.search);
+console.log(q.query);
 
-}).listen(8080);
+var qdata = q.query;
 
-console.log('Server running on port 8080.');
+console.log(qdata.month);
+
+//console.log('Server running on port 8080.');
