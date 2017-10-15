@@ -1,27 +1,16 @@
 var http = require('http');
-var dt = require('./dateModule');
 var url = require('url');
-var fs = require('fs');
 
-http.createServer(function (req, res) {
+var adr = 'http://localhost:8080/default.htm?year=2017&month=february';
+var q = url.parse(adr, true);
 
-    fs.readFile('index.html', function(err, data){
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        
-            var q = url.parse(req.url, true).query;
-            var txt = q.year + " " + q.month;
+console.log(q.host);
+console.log(q.pathname);
+console.log(q.search);
+console.log(q.query);
 
-            res.write(data);
-            
-            res.write(req.url + "\n\n");
-            res.write('Hello World!\nDate & Time: ' + dt.myDateTime());
-        
-            res.write("\n\n" + txt);
-        
-            res.end();
-        
-    });
+var qdata = q.query;
 
-}).listen(8080);
+console.log(qdata.month);
 
-console.log('Server running on port 8080.');
+//console.log('Server running on port 8080.');
